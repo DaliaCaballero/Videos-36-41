@@ -13,7 +13,7 @@ class Producto(BaseModel):
     proveedor: str
 
 
-
+app = FastAPI()
 
 productos = []
 
