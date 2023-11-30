@@ -33,3 +33,12 @@ def crear_producto(producto: Producto):
     producto.id = str(uuid())
     productos.append(producto)
     return {'mensaje': 'Producto creado satisfactoriamente.'}
+
+@app.get('/producto/{producto_id}')
+def obtener_producto_por_id(producto_id: str):
+    resultado = list(filter(lambda p: p.id == producto_id, productos))
+
+    if len(resultado):
+        return resultado[0]
+    
+    raise HTTPException(status_code=404, detail=f'El producto con el ID {producto_id} no fue encontrado.')
